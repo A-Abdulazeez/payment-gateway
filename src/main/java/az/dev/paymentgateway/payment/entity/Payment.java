@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "payments")
@@ -71,6 +73,10 @@ public class Payment {
     protected void onUpdate() {
         updatedAt = Instant.now();
     }
+
+    @OneToMany(mappedBy = "payment")
+    @Getter
+    private List<PaymentHistory> history = new ArrayList<>();
 
 
 
